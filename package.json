@@ -1,0 +1,25 @@
+{
+    "name": "drippy-is-aac",
+    "version": "1.0.0",
+    "description": "WebAssembly implementation of the FDK-AAC library",
+    "main": "index.js",
+    "scripts": {
+        "transpile": "tsc",
+        "build": "make && npm run transpile"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DrippyMusic/drippy-is-aac.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DrippyMusic/drippy-is-aac/issues"
+    },
+    "homepage": "https://github.com/DrippyMusic/drippy-is-aac#readme",
+    "devDependencies": {
+        "@types/requirejs": "^2.1.32",
+        "typescript": "^3.9.7"
+    }
+}
