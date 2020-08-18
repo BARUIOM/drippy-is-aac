@@ -9,7 +9,7 @@ dist/daac.js: $(FDK_LIB)
 	@mkdir -p dist
 	emcc $^ -Oz -Os \
 		-s WASM=1 -s NODEJS_CATCH_EXIT=0 \
-		-s EXPORTED_FUNCTIONS="['_malloc', '_calloc', '_free']" \
+		-s EXPORTED_FUNCTIONS="['_malloc', '_calloc', '_free', '_aacDecoder_Open', '_aacDecoder_SetParam', '_aacDecoder_Fill', '_aacDecoder_DecodeFrame']" \
 		-o $@
 	@[ -f dist/daac.js ]
 	@echo "module.exports = Module" >> dist/daac.js
