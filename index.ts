@@ -80,24 +80,7 @@ const enum AAC_DECODER_ERROR {
     aac_dec_anc_data_error_end = 0x8FFF
 }
 
-declare interface Module {
-    readonly HEAP8: Int8Array;
-    readonly HEAP16: Int16Array;
-    readonly HEAP32: Int32Array;
-    readonly HEAPU8: Uint8Array;
-    readonly HEAPU16: Uint16Array;
-    readonly HEAPU32: Uint32Array;
-    readonly HEAPF32: Float32Array;
-    readonly HEAPF64: Float64Array;
-
-    _malloc(__size: number): number;
-
-    _calloc(__nmemb: number, __size: number): number;
-
-    _free(__ptr: number): void;
-}
-
-declare interface AAC extends Module {
+declare interface AAC extends EmscriptenModule {
 
     _aacDecoder_Open(transportFmt: TRANSPORT_TYPE, nrOfLayers: number): HANDLE_AACDECODER;
 
@@ -108,3 +91,13 @@ declare interface AAC extends Module {
     _aacDecoder_DecodeFrame(self: HANDLE_AACDECODER, pTimeData: fdk_ptr, timeDataSize: number, flags: number): AAC_DECODER_ERROR;
 
 }
+
+var aac: AAC;
+(require('./dist/daac.js')() as Promise<AAC>)
+    .then(_aac => aac = _aac);
+
+namespace AAC {
+
+}
+
+export default AAC;
